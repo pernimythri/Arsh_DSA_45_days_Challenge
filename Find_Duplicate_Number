@@ -69,3 +69,44 @@ class Solution {
         sc.close();
     }
 }
+
+--------------------------------------------------------------------------------------------------------------
+***** It works only when the given elements values are less than array size.
+import java.util.Scanner;
+
+class Solution {
+    public int findDuplicate(int[] nums) {
+        
+        int tortoise = nums[0];
+        int hare = nums[0];
+        
+        do {
+            tortoise = nums[tortoise];
+            hare = nums[nums[hare]];
+        } while (tortoise != hare);
+        
+        
+        tortoise = nums[0];
+        while (tortoise != hare) {
+            tortoise = nums[tortoise];
+            hare = nums[hare];
+        }
+        
+        return hare;
+    }
+
+    public static void main(String[] args) {
+        Solution obj = new Solution();
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter size of array (n+1): ");
+        int n = sc.nextInt();
+        System.out.print("Enter values to array: ");
+        int[] arr = new int[n];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = sc.nextInt();
+        }
+        int dup_num = obj.findDuplicate(arr);
+        System.out.println("Duplicate number: " + dup_num);
+    }
+}
+

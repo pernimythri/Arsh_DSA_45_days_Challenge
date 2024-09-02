@@ -1,0 +1,67 @@
+Time Complexity - O(N^2)
+
+import java.util.*;
+public class Solution {
+    public boolean ValidParentheses(String s) {
+        while (s.contains("()") || s.contains("[]") || s.contains("{}")) {
+            s = s.replace("()", "").replace("[]", "").replace("{}", "");
+        }
+        return s.isEmpty();
+    }
+    public static void main(String[] args) {
+        Solution obj = new Solution();
+        
+        Scanner sc=new Scanner(System.in);
+        System.out.print("Enter Input : ");
+        String str=sc.nextLine();
+        if(obj.ValidParentheses(str))
+        System.out.print("Valid Parentheses");
+        else
+        System.out.print("Invalid parentheses");
+    }}
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Time Complexity - O(N)
+
+import java.util.*;
+public class Solution
+{
+    public boolean ValidParentheses(String s) 
+      {
+        Stack<Character> stack = new Stack<>();
+        for (char ch : s.toCharArray()) 
+          {
+            if (ch == '(' || ch == '{' || ch == '[')
+            {
+                stack.push(ch);
+            }
+            else 
+            {
+                if (stack.isEmpty()) {
+                    return false;
+                }
+                char top = stack.pop();
+                
+                if ((ch == ')' && top != '(') || 
+                    (ch == '}' && top != '{') || 
+                    (ch == ']' && top != '[')) {
+                    return false;  
+                }
+            }
+        } 
+        return stack.isEmpty();
+    }
+    public static void main(String[] args) {
+        Solution obj = new Solution();
+        Scanner sc=new Scanner(System.in);
+        System.out.print("Enter Input : ");
+        String str=sc.nextLine();
+        if(obj.ValidParentheses(str))
+        System.out.print("Valid Parentheses");
+        else
+        System.out.print("Invalid parentheses");
+    }
+}
+
+

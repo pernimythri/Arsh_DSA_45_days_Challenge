@@ -1,0 +1,60 @@
+Time Complexity : O(NlogN)
+Space Complexity: O(1)
+
+import java.util.*;
+public class Main {
+    static void Duplicates(String str)
+    {
+        int len = str.length();
+        char[] chararray = str.toCharArray();
+        Arrays.sort(chararray);
+        String updatedstr = new String(chararray);
+        for (int i = 0; i < len; i++) {
+            int count = 1;
+            while (i < len - 1 && updatedstr.charAt(i) == updatedstr.charAt(i + 1)) {
+                count++;
+                i++;
+            }
+            if (count > 1) {
+                System.out.println(updatedstr.charAt(i)
+                                   + ", count = " + count);
+            }  }
+    }
+
+    public static void main(String[] args)
+    {
+        Scanner sc=new Scanner(System.in);
+        String str=sc.next();
+        Duplicates(str);
+    }
+}
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Time Complexity : O(N)
+
+import java.util.*;
+class Solution
+{
+  static void Duplicates(String str)
+  {
+    Map<Character, Integer> variable = new HashMap<>();
+    for (int i = 0; i < str.length(); i++) {
+      if(variable.containsKey(str.charAt(i)))
+        variable.put(str.charAt(i) , variable.get(str.charAt(i))+1); 
+      else variable.put(str.charAt(i),1);
+    }
+
+    for (Map.Entry<Character,Integer> mapElement : variable.entrySet()) {    
+      if (mapElement.getValue() > 1)   
+        System.out.println(mapElement.getKey() + ", count = " + mapElement.getValue());
+    }
+  }
+
+  public static void main(String args[])
+  {
+   Scanner sc=new Scanner(System.in);
+   String s=sc.next();
+   Duplicates(s);
+  }
+}
